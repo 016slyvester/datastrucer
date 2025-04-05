@@ -17,26 +17,32 @@ public class MyFrame extends JFrame implements KeyListener {
     private Timer gameTimer;
     private Random random = new Random();
     private boolean gameRunning = true;
-
-    public MyFrame() {
-        setTitle("Rocket Game");
-        setSize(GAME_WIDTH, GAME_HEIGHT);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
-
-
-        JPanel gamePanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.setColor(Color.WHITE);
-                g.drawRect(0, 0, GAME_WIDTH-1, GAME_HEIGHT-1); // Border
-            }
-        };
-        gamePanel.setLayout(null);
-        gamePanel.setBackground(Color.BLACK);
-        add(gamePanel, BorderLayout.CENTER);
+    
+    
+        public MyFrame() {
+            setTitle("Rocket Game");
+            setSize(GAME_WIDTH, GAME_HEIGHT);
+            setLocationRelativeTo(null);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLayout(new BorderLayout());
+    
+    
+            JPanel gamePanel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.setColor(Color.WHITE);
+                    g.drawRect(0, 0, GAME_WIDTH-1, GAME_HEIGHT-1); // Border
+                }
+            };
+            gamePanel.setLayout(null);
+            gamePanel.setBackground(Color.BLACK);
+            add(gamePanel, BorderLayout.CENTER);
+    
+             // Load fireball to the fream
+            ImageIcon fireBallIcon = createScaledIcon("main/resources/fireball.icons1.png", 40, 50);
+            
+            
 
         // Load rocket to the fream
         ImageIcon rocketIcon = createScaledIcon("main/resources/img.icons8.png", 50, 56);
@@ -51,7 +57,8 @@ public class MyFrame extends JFrame implements KeyListener {
 
             // Spawn new balls
             if (random.nextInt(SPAWN_RATE) == 0) {
-                JLabel ball = createBall();
+                JLabel ball = new JLabel( fireBallIcon);
+                ball = createBall();
                 gamePanel.add(ball);
                 balls.add(ball);
             }
